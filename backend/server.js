@@ -1,12 +1,12 @@
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 
-const portNumber = 1305;
-
 app.get('/', (req, res) => {
-    res.json({msg:'Welcome to the App'});
+    res.json({msg:'Welcome to Training Bro'});
 });
 
-app.listen(portNumber, () => {
-    console.log('Listening on port 1305....');
+app.listen(process.env.PORT, () => {
+    console.log(`Port No: ${process.env.PORT}`);
 });
