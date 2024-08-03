@@ -5,6 +5,8 @@ const app = express();
 
 const exerciseRoutes = require('./routes/exercise');
 
+app.use(express.json());
+
 app.use((req, res, next) => {
     console.log(req.path, req.method);
     next();
