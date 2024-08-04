@@ -19,7 +19,7 @@ const getAllExercises = async (req, res) => {
 
 const getSingleExercise = async (req, res) => {
     const {id} = req.params;
-    const exercise = trainingModel.findById(id);
+    const exercise = await trainingModel.findById(id);
 
     if (!exercise) {
         return res.status(404).json({error: "Exercise doesn't exist."});
