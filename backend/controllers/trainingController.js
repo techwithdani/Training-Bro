@@ -20,11 +20,12 @@ const getAllExercises = async (req, res) => {
 
 const getSingleExercise = async (req, res) => {
     const {id} = req.params;
-    const exercise = await trainingModel.findById(id);
 
-    if (!mongoose.Types.ObjectId.isValid()) {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({error: "Invalid Id and Exercise doesn't exist."});
     }
+
+    const exercise = await trainingModel.findById(id);
 
     if (!exercise) {
         return res.status(404).json({error: "Exercise doesn't exist."});
@@ -33,8 +34,44 @@ const getSingleExercise = async (req, res) => {
     res.status(200).json(exercise);
 }
 
+const updateExercise = async (req, res) => {
+    const {id} = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: "Invalid Id and Exercise doesn't exist."});
+    }
+
+    const exercise = await trainingModel.findOneAndUpdate({_id: id}, {
+        ...req.body
+    });
+
+    if (!exercise) {
+        return res.status(400).json({error: "Exercise doesn't exist."});
+    }
+
+    res.status(200).json(exercise);
+}
+
+const removeExercise = async (req, res) => {
+    const {id} = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: "Invalid Id and Exercise doesn't exist."});
+    }
+
+    const exercise = await trainingModel.findOneAndDelete({_id: id});
+
+    if (!exercise) {
+        return res.status(400).json({error: "Exercise doesn't exist."});
+    }
+
+    res.status(200).json(exercise);
+}
+
 module.exports = {
     postExercise,
     getAllExercises,
-    getSingleExercise
+    getSingleExercise,
+    removeExercise,
+    updateExercise
 }

@@ -1,5 +1,11 @@
 const express = require('express');
-const {postExercise, getAllExercises, getSingleExercise} = require('../controllers/trainingController');
+const {
+    postExercise,
+    getAllExercises,
+    getSingleExercise,
+    removeExercise,
+    updateExercise
+} = require('../controllers/trainingController');
 
 const expressRouter = express.Router();
 
@@ -9,12 +15,8 @@ expressRouter.get('/:id', getSingleExercise);
 
 expressRouter.post('/', postExercise);
 
-expressRouter.delete('/:id', (req, res) => {
-    res.json({msg:'DELETE Exercise'});
-});
+expressRouter.delete('/:id', removeExercise);
 
-expressRouter.patch('/:id', (req, res) => {
-    res.json({msg:'UPDATE Exercise'});
-});
+expressRouter.patch('/:id', updateExercise);
 
 module.exports = expressRouter;
