@@ -16,3 +16,5 @@ const trainingSchema = new Schema({
         required: true
     }
 }, { timestamps: true});
+
+module.exports = mongoose.model('Exercise', trainingSchema);
