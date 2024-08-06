@@ -1,6 +1,6 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Home from './pages/Home';
-import Nav from './components/Nav';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Home from './pages/Home'
+import Nav from './components/Nav'
 
 const App = () => {
   return (
@@ -20,4 +20,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App
