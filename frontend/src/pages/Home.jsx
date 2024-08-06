@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import ExerciseDetails from "../components/ExerciseDeatails";
 
 const Home = () => {
     const [exercises, setExercises] = useState(null);
@@ -21,13 +22,7 @@ const Home = () => {
             <div className="exercises">
                 {exercises ? (
                     exercises.map((exercise) => (
-                        <div key={exercise._id}>
-                            <h3>{exercise.title}</h3>
-                            <p>Reps: {exercise.reps}</p>
-                            <p>Load: {exercise.load}Kg</p>
-                            <p>Created At: {new Date(exercise.createdAt).toLocaleString()}</p>
-                            <p>Updated At: {new Date(exercise.updatedAt).toLocaleString()}</p>
-                        </div>
+                       <ExerciseDetails key={exercise._id} exercise={exercise}/>
                     ))
                 ) : (
                     <p>Loading exercises...</p>
