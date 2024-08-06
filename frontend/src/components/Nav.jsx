@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 const Nav = () => {
     return (
         <header>
-            <div className="container">
+            <div className="p-1 mb-5 mt-3 text-center font-mono text-2xl text-green-500 bg-black">
                 <Link to="/">
                     <h1>Training Bro</h1>
                 </Link>

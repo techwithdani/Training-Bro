@@ -18,8 +18,8 @@ const Home = () => {
     }, [])
 
     return (
-        <div className="home">
-            <div className="exercises">
+        <div className=" bg-slate-300">
+            <div>
                 {exercises ? (
                     exercises.map((exercise) => (
                        <ExerciseDetails key={exercise._id} exercise={exercise}/>

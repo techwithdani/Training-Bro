@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const ExerciseDetails = ({ exercise }) => {
     return (
-        <div className="exercise-details">
+        <div className="p-2 mb-5">
             <h3>{exercise.title}</h3>
             <p><strong>Weight in Kg: </strong>{exercise.load}</p>
             <p><strong>Reps: </strong>{exercise.reps}</p>
