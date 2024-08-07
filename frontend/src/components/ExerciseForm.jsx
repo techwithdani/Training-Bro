@@ -12,7 +12,7 @@ const ExerciseForm = () => {
         const workout = {title, reps, load}
 
         try {
-            const response = await fetch('/api/exercises', {
+            const response = await fetch('http://localhost:1305/api/exercises', {
                 method: 'POST',
                 body: JSON.stringify(workout),
                 headers: {
