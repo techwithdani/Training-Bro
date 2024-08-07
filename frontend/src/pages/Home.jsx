@@ -19,7 +19,8 @@ const Home = () => {
     }, [])
 
     return (
-        <div className=" bg-slate-300">
+        <>
+        <div className="bg-slate-300">
             <div>
                 {exercises ? (
                     exercises.map((exercise) => (
@@ -29,8 +30,9 @@ const Home = () => {
                     <p>Loading exercises...</p>
                 )}
             </div>
-            <ExerciseForm/>
         </div>
+        <ExerciseForm/>
+        </>
     )
 }
 

@@ -44,29 +44,29 @@ const ExerciseForm = () => {
     }
 
     return (
-        <form onSubmit={submission}>
-            <h2>ADD A NEW EXERCISE</h2>
+        <form className="bg-slate-300" onSubmit={submission}>
+            <h2 className="p-2 m-2 text-center">ADD A NEW EXERCISE</h2>
 
-            <label>Exercise Name:</label>
+            <label className="p-1 mr-1">Exercise Name:</label>
             <input
                 type="text"
                 onChange={(e) => {setTitle(e.target.value)}}
                 value={title}
             />
-             <label>Number of Repetitions:</label>
+             <label className="p-1 m-1">Number of Repetitions:</label>
             <input
                 type="text"
                 onChange={(e) => {setReps(e.target.value)}}
                 value={reps}
             />
-             <label>Weight in Kg:</label>
+             <label className="p-1 m-1">Weight in Kg:</label>
             <input
                 type="text"
                 onChange={(e) => {setLoad(e.target.value)}}
                 value={load}
             />
 
-            <button>ADD WORKOUT</button>
+            <button className="p-2 ml-5 bg-emerald-600">ADD WORKOUT</button>
             {error && <div>{error}</div>}
         </form>
     )
