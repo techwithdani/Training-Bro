@@ -1,14 +1,42 @@
 import { useState } from "react";
 
 const ExerciseForm = () => {
+    const [error, setError] = useState(null);
     const [title, setTitle] = useState('');
     const [reps, setReps] = useState('');
     const [load, setLoad] = useState('');
 
+    const submission = async (e) => {
+        e.preventDefault()
+
+        const workout = {title, reps, load}
+
+        const response = await fetch('/api/exercises', {
+            method: 'POST',
+            body: JSON.stringify(workout),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        const json = await response.json()
+
+        if (response.ok) {
+            setError(null)
+            setTitle('')
+            setReps('')
+            setLoad('')
+        }
+
+        if (!response.ok) {
+            setError(json.error)
+        }
+    }
+
     return (
-        <form>
+        <form onSubmit={submission}>
             <h2>ADD A NEW EXERCISE</h2>
-            
+
             <label>Exercise Name:</label>
             <input
                 type="text"
