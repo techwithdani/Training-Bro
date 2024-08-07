@@ -11,26 +11,36 @@ const ExerciseForm = () => {
 
         const workout = {title, reps, load}
 
-        const response = await fetch('/api/exercises', {
-            method: 'POST',
-            body: JSON.stringify(workout),
-            headers: {
-                'Content-Type': 'application/json'
+        try {
+            const response = await fetch('/api/exercises', {
+                method: 'POST',
+                body: JSON.stringify(workout),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+    
+            let json
+
+            try {
+                json = await response.json();
+            } catch (err) {
+                throw new Error('Failed to parse JSON response');
             }
-        })
 
-        const json = await response.json()
+            if (response.ok) {
+                setError(null);
+                setTitle('');
+                setReps('');
+                setLoad('');
+                console.log(json);
+            } else {
+                setError(json.error || 'An unknown error occurred');
+            }
 
-        if (response.ok) {
-            setError(null)
-            setTitle('')
-            setReps('')
-            setLoad('')
-        }
-
-        if (!response.ok) {
-            setError(json.error)
-        }
+        } catch (error) {
+            setError(error.message)
+        } 
     }
 
     return (
@@ -57,6 +67,7 @@ const ExerciseForm = () => {
             />
 
             <button>ADD WORKOUT</button>
+            {error && <div>{error}</div>}
         </form>
     )
 }
