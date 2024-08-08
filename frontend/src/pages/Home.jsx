@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import ExerciseDetails from "../components/ExerciseDetails";
 import ExerciseForm from "../components/ExerciseForm";
+import { UseTrainingContext } from "../hooks/UseTrainingContext";
 
 const Home = () => {
-    const [exercises, setExercises] = useState(null);
+    const {exercises, dispatch} = UseTrainingContext()
 
     useEffect(() => {
         const fetchExercises = async () => {
@@ -11,7 +12,7 @@ const Home = () => {
             const json = await response.json()
 
             if (response.ok) {
-                setExercises(json)
+                dispatch({type: 'SET_EXERCISES', payload: json})
             }
         }
 

@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { UseTrainingContext } from "../hooks/UseTrainingContext";
 
 const ExerciseForm = () => {
     const [error, setError] = useState(null);
     const [title, setTitle] = useState('');
     const [reps, setReps] = useState('');
     const [load, setLoad] = useState('');
+    const { dispatch } = UseTrainingContext()
 
     const submission = async (e) => {
         e.preventDefault()
@@ -34,6 +36,7 @@ const ExerciseForm = () => {
                 setReps('');
                 setLoad('');
                 console.log(json);
+                dispatch({type: 'CREATE_EXERCISE', payload: json})
             } else {
                 setError(json.error || 'An unknown error occurred');
             }
