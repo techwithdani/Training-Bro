@@ -1,22 +1,8 @@
 import PropTypes from 'prop-types';
 import { createContext, useReducer } from "react"
+import { trainingReducer } from './TrainingReducer';
 
 export const TrainingContext = createContext()
-
-export const trainingReducer = (state, action) => {
-    switch (action.type) {
-        case 'SET_EXERCISES':
-            return {
-                exercises: action.payload
-            }
-        case 'CREATE_EXERCISE':
-            return {
-                exercises: [action.payload, ...state.exercises]
-            }
-        default:
-            return state
-    }
-}
 
 export const TrainingContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(trainingReducer, {
@@ -24,7 +10,7 @@ export const TrainingContextProvider = ({ children }) => {
     })
 
     return (
-        <TrainingContext.Provider value={{state, dispatch}}>
+        <TrainingContext.Provider value={{...state, dispatch}}>
             { children }
         </TrainingContext.Provider>
     )
